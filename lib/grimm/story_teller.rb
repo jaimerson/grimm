@@ -1,5 +1,3 @@
-require 'grimm/dsl'
-
 module Grimm
   class StoryTeller
     include Grimm::Dsl
@@ -10,7 +8,8 @@ module Grimm
       self.instance_eval(&block) if block_given?
     end
 
-    def scenario(description)
+    def scenario(name, *args)
+      require 'pry'
       binding.pry
     end
 

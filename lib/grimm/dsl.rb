@@ -1,5 +1,3 @@
-require 'grimm/book'
-
 module Grimm
   module Dsl
     def self.included(base)

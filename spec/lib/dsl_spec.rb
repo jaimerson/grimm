@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'grimm/dsl'
 
 describe Grimm::Dsl do
   subject(:descendant) do

@@ -1,12 +1,10 @@
-require 'grimm/chapter'
-
 module Grimm
   class Book
-    attr_reader :chapters
+    attr_reader :hero
+    alias_method :heroine, :hero
 
     def initialize(title=nil, &block)
       @title = title
-      @chapters = []
 
       self.instance_eval(&block) if block_given?
     end
@@ -15,8 +13,12 @@ module Grimm
       @title ||= new_title
     end
 
-    def chapter(title, &block)
-      @chapters << Chapter.new(title, &block)
+    def define_hero(name=nil, &block)
+      if name
+        alias_method name, :hero
+      end
+      @hero = Grimm::Hero.new(name, &block)
     end
+
   end
 end

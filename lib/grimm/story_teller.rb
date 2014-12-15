@@ -8,12 +8,24 @@ module Grimm
       self.instance_eval(&block) if block_given?
     end
 
-    def scenario(name, *args)
-      require 'pry'
-      binding.pry
+    def start
+      while !book.finished
+        print_instructions
+        book.public_send(formatted_user_input)
+      end
     end
 
     private
+
+    def print_instructions
+      puts book.current_chapter
+      puts 'What do you do?'
+    end
+
+    def formatted_user_input
+      user_input.chomp
+        .gsub(/\s/, '_')
+    end
 
     def user_input
       @input_stream.gets
